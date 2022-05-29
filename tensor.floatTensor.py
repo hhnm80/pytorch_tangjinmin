@@ -7,5 +7,11 @@ a=torch.FloatTensor(2,3)
 
 #定义一个张量,其实这里是具体定义了一个张量,括号里面可以看成是一个py列表,列表变成torch张量,在计算机里面,只是存储变量的容器类型发生了变化,但是里面的内容不变,还是2 3 4 5
 b=torch.FloatTensor([2,3,4,5])
+
+# 整数张量 2行3列
+c = torch.IntTensor(2,3)
+d = torch.IntTensor([2,3,4,5])
 print(a)
 print(b)
+print(c)
+print(d)
