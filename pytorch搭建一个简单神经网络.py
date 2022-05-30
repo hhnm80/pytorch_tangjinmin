@@ -62,7 +62,7 @@ for epoch in range(epoch_n):
     # 这是怎么输出的呢?????还是用字符串填坑,坑是什么呢???就是这里面的大括号,epoch填入第一个大括号,但是是原模原样的填进去,format  .4f就是保留4位小数,没有小数就补0
     print("Epoch:{}, Loss:{:.4f}".format(epoch, loss))
 
-    # 给grad_y_pred这个变量赋值
+    # 给grad_y_pred这个变量赋值 两个矩阵相减,然后把里面每个元素扩大二倍,,,,
     grad_y_pred = 2 * (y_pred - y)
-    # torch的mm函数是矩阵相乘,对h1这个矩阵转置以后,得到一个100*100矩阵,然后这个矩阵与grad_y_pred相乘,
+    # torch的mm函数是矩阵相乘,对h1这个矩阵转置以后,得到一个100*100矩阵,然后这个矩阵与grad_y_pred矩阵相乘,grad_y_pred是100*10矩阵,    最后grad_w2是100*10矩阵 grad在英文里面是"梯度"的意思
     grad_w2 = h1.t().mm(grad_y_pred)
