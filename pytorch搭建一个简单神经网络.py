@@ -50,6 +50,7 @@ for epoch in range(epoch_n):
     # clamp函数,百度查看这个函数的定义,,这个函数只有一个参数,假设有一个a=torch.IntTensor([1,2,9,-2,-1])这样的张量,则a.clamp(0)后得到的张量是tensor([1, 2, 9, 0, 0], dtype=torch.int32)....这说明,原来张量里面小于0的值变成了0,,这和relu激活函数的功能几乎一致....
     h1=h1.clamp(min=0)
     # 这又是什么呢,让h1,就是被处理后的矩阵,这时候h1这个矩阵里面所有的元素都是非负,,,h1和w2相乘得到什么呢???结果是一个100行10列的矩阵,
+    # y_pred是一个100*10的矩阵
     y_pred = h1.mm(w2)  #得到 100*10
 
     # 这里面给定了一个y值 y是一个100行 10列的张量,y_pred也是一个100行10列的张量,这里要知道y_pred矩阵的来源,为了方便理解,下面所有的张量我们都以矩阵代替,y_pred的来源是
@@ -58,6 +59,10 @@ for epoch in range(epoch_n):
     loss=(y_pred-y).pow(2).sum();
     #输出Epoch:0, Loss:41555568.0000
     # Epoch:1, Loss:41555568.0000
-
+    # 这是怎么输出的呢?????还是用字符串填坑,坑是什么呢???就是这里面的大括号,epoch填入第一个大括号,但是是原模原样的填进去,format  .4f就是保留4位小数,没有小数就补0
     print("Epoch:{}, Loss:{:.4f}".format(epoch, loss))
 
+    # 给grad_y_pred这个变量赋值
+    grad_y_pred = 2 * (y_pred - y)
+    # torch的mm函数是矩阵相乘,对h1这个矩阵转置以后,得到一个100*100矩阵,然后这个矩阵与grad_y_pred相乘,
+    grad_w2 = h1.t().mm(grad_y_pred)

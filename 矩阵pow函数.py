@@ -6,3 +6,12 @@ a=torch.IntTensor([1,2,9,-2,-1])
 print(a.pow(2))
 # 输出91
 print(a.pow(2).sum())
+
+a=torch.IntTensor([[1,2],[3,4]])
+
+# 输出tensor([[1, 3],
+#         [2, 4]], dtype=torch.int32)
+print(a.t())
+
+
+
