@@ -52,7 +52,7 @@ for epoch in range(epoch_n):
     print("x值是:", x)
     print("w1值是:", w1)
 
-    # x可以看做是输入数据 x = torch.randn(batch_n, input_data),x是100行,1000列的举证,如果把batch_n看成个数,那么我们可以认为是输入100个一维向量,每个一维向量里面包含1000个数据,由于输入的数据是矩阵,所以
+    # x可以看做是输入数据 x = torch.randn(batch_n, input_data),x是100行,1000列的举证,如果把batch_n看成个数,那么我们可以认为是输入100个一维向量,每个一维向量里面包含1000个数据,由于输入的数据是矩阵,所以w1这个权重也是个矩阵,
     h1=x.mm(w1)
     # clamp函数,百度查看这个函数的定义,,这个函数只有一个参数,假设有一个a=torch.IntTensor([1,2,9,-2,-1])这样的张量,则a.clamp(0)后得到的张量是tensor([1, 2, 9, 0, 0], dtype=torch.int32)....这说明,原来张量里面小于0的值变成了0,,这和relu激活函数的功能几乎一致....
     h1=h1.clamp(min=0)
