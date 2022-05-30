@@ -13,5 +13,9 @@ a=torch.IntTensor([[1,2],[3,4]])
 #         [2, 4]], dtype=torch.int32)
 print(a.t())
 
+c=a.clone();
+print(a)
+print(c)
+
 
 
